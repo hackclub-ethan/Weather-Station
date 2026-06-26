@@ -1,0 +1,53 @@
+#include "DHT.h"
+#include <DIYables_LCD_I2C.h>
+
+#define DHT11_PIN 2
+
+DHT dht11(DHT11_PIN, DHT11);
+DIYables_LCD_I2C lcd(0x27, 16, 2);
+
+void setup() {
+    pinMode(2, INPUT);
+    pinMode(7, INPUT);
+    pinMode(12, INPUT);
+    pinMode(13, INPUT);
+    pinMode(A0, INPUT);
+
+    Serial.begin(9600);
+
+    dht11.begin();
+
+    lcd.init();
+    lcd.backlight();
+}
+
+void loop() {
+    // Temp Sensor
+    tempSenVal = analogRead(A0);
+    voltage = (tempSenVal * 5000) / 1024;
+    celcius = voltage/10;
+
+
+    // Humitity Sesnor
+    float humitity = dht11.readHumidity();
+
+    // Get water level number
+
+    // Set values on LCD
+    lcd.clear();
+
+    lcd.print("Temp: ");
+    lcd.print(celcius)
+    lcd.print("C    ")
+
+    lcd.print("Humitity:")
+    lcd.print(humitity)
+
+    lcd.setCursor(0, 1)
+
+    lcd.print("Water level: ")
+    lcd.print("TBD")
+    
+
+    delay(60000); // One minute
+}
