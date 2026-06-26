@@ -17,7 +17,7 @@
     "group-arduino-uno": [
       {
         "name": "sketch.ino",
-        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(7, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    tempSenVal = analogRead(A0);\n    voltage = (tempSenVal * 5000) / 1024;\n    celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"Temp: \");\n    lcd.print(celcius)\n    lcd.print(\"C    \")\n\n    lcd.print(\"Humitity:\")\n    lcd.print(humitity)\n\n    lcd.setCursor(0, 1)\n\n    lcd.print(\"Water level: \")\n    lcd.print(\"TBD\")\n    \n\n    delay(60000); // One minute\n}"
+        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(A3, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    tempSenVal = analogRead(A0);\n    voltage = (tempSenVal * 5000) / 1024;\n    celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n    levelSen = analogRead(A3);\n    level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting \n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"Temp: \");\n    lcd.print(celcius)\n    lcd.print(\"C    \")\n\n    lcd.print(\"Humitity:\")\n    lcd.print(humitity)\n\n    lcd.setCursor(0, 1)\n\n    lcd.print(\"Water level: \")\n    lcd.print(level)\n    \n\n    delay(60000); // One minute\n}"
       }
     ]
   },
@@ -121,40 +121,6 @@
         "componentId": "arduino-uno",
         "pinName": "2",
         "x": 315.8270930444698,
-        "y": 80.92511653363735
-      },
-      "color": "#22c55e"
-    },
-    {
-      "waypoints": [
-        {
-          "x": 723.1133472440767,
-          "y": -108.45190248278438
-        },
-        {
-          "x": 326.9708914369322,
-          "y": -108.45190248278438
-        },
-        {
-          "x": 326.9708914369322,
-          "y": -5.455367172173095
-        },
-        {
-          "x": 268.3270930444698,
-          "y": -5.455367172173095
-        }
-      ],
-      "id": "wire-1782503760828",
-      "start": {
-        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
-        "pinName": "S",
-        "x": 723.1133472440767,
-        "y": -141.1182428739796
-      },
-      "end": {
-        "componentId": "arduino-uno",
-        "pinName": "7",
-        "x": 268.3270930444698,
         "y": 80.92511653363735
       },
       "color": "#22c55e"
@@ -485,6 +451,61 @@
         "y": 263.4251165336374
       },
       "color": "#22c55e"
+    },
+    {
+      "id": "wire-1782513336120",
+      "start": {
+        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
+        "pinName": "S",
+        "x": 723.1179453493688,
+        "y": -141.1142167165867
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "A3",
+        "x": 315.8270930444698,
+        "y": 263.4251165336374
+      },
+      "waypoints": [
+        {
+          "x": 722.529932939377,
+          "y": -141.1142167165867
+        },
+        {
+          "x": 722.529932939377,
+          "y": 344.79347332972407
+        },
+        {
+          "x": 315.4815100450421,
+          "y": 344.79347332972407
+        },
+        {
+          "x": 315.4815100450421,
+          "y": 346.8862081592938
+        },
+        {
+          "x": 315.8270930444698,
+          "y": 346.8862081592938
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1782513371204",
+      "start": {
+        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
+        "pinName": "+",
+        "x": 698.1133472440767,
+        "y": -141.1182428739796
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TP56",
+        "x": 130.594869740916,
+        "y": -142.29507521499147
+      },
+      "waypoints": [],
+      "color": "#cc0000"
     }
   ],
   "activeBoardId": "arduino-uno"
