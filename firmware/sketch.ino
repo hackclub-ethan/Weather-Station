@@ -8,7 +8,7 @@ DIYables_LCD_I2C lcd(0x27, 16, 2);
 
 void setup() {
     pinMode(2, INPUT);
-    pinMode(7, INPUT);
+    pinMode(A3, INPUT);
     pinMode(12, INPUT);
     pinMode(13, INPUT);
     pinMode(A0, INPUT);
@@ -32,6 +32,8 @@ void loop() {
     float humitity = dht11.readHumidity();
 
     // Get water level number
+    levelSen = analogRead(A3);
+    level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting 
 
     // Set values on LCD
     lcd.clear();
@@ -46,7 +48,7 @@ void loop() {
     lcd.setCursor(0, 1)
 
     lcd.print("Water level: ")
-    lcd.print("TBD")
+    lcd.print(level)
     
 
     delay(60000); // One minute
