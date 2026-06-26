@@ -1,0 +1,491 @@
+{
+  "format": "velxio-project",
+  "version": 1,
+  "boards": [
+    {
+      "id": "arduino-uno",
+      "name": "Arduino Uno",
+      "boardKind": "arduino-uno",
+      "x": 79.32709304446979,
+      "y": 71.92511653363735,
+      "activeFileGroupId": "group-arduino-uno",
+      "languageMode": "arduino",
+      "serialBaudRate": 0
+    }
+  ],
+  "fileGroups": {
+    "group-arduino-uno": [
+      {
+        "name": "sketch.ino",
+        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(7, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    tempSenVal = analogRead(A0);\n    voltage = (tempSenVal * 5000) / 1024;\n    celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"Temp: \");\n    lcd.print(celcius)\n    lcd.print(\"C    \")\n\n    lcd.print(\"Humitity:\")\n    lcd.print(humitity)\n\n    lcd.setCursor(0, 1)\n\n    lcd.print(\"Water level: \")\n    lcd.print(\"TBD\")\n    \n\n    delay(60000); // One minute\n}"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "dht11_1782503249251_cz0mibdkp",
+      "metadataId": "dht11",
+      "x": 581,
+      "y": -5.5450546339794755,
+      "properties": {
+        "temperature": 25,
+        "humidity": 50
+      }
+    },
+    {
+      "id": "water_level_sensor_1782503332053_rljc90l5k",
+      "metadataId": "water-level-sensor",
+      "x": 674.1133472440767,
+      "y": -227.1182428739796,
+      "properties": {
+        "level": 0
+      }
+    },
+    {
+      "id": "lcd1602_i2c_1782505094722_4dlu2whr9",
+      "metadataId": "lcd1602-i2c",
+      "x": 320.2239153931631,
+      "y": -372.6082040350968,
+      "properties": {
+        "i2cAddress": "0x27",
+        "pins": "i2c",
+        "background": "blue",
+        "color": "black",
+        "backlight": true
+      }
+    },
+    {
+      "id": "breadboard_full_1782505241075_v7o2pm33u",
+      "metadataId": "breadboard-full",
+      "x": -315.405130259084,
+      "y": -485.29507521499147,
+      "properties": {
+        "rotation": 90
+      }
+    },
+    {
+      "id": "lm35dz_1782503286869_cc68ez4m3",
+      "metadataId": "lm35dz",
+      "x": 384.75062973473774,
+      "y": -67.4893670123036,
+      "properties": {
+        "temperature": 25,
+        "rotation": 0
+      }
+    }
+  ],
+  "wires": [
+    {
+      "waypoints": [
+        {
+          "x": 630,
+          "y": 112.55802357644998
+        },
+        {
+          "x": 546.1144686021707,
+          "y": 112.55802357644998
+        },
+        {
+          "x": 546.1144686021707,
+          "y": 183.23108424831597
+        },
+        {
+          "x": 374.1164813398118,
+          "y": 183.23108424831597
+        },
+        {
+          "x": 374.1164813398118,
+          "y": 18.219000108242597
+        },
+        {
+          "x": 316.433228277863,
+          "y": 18.219000108242597
+        },
+        {
+          "x": 316.433228277863,
+          "y": 81.71347522504395
+        },
+        {
+          "x": 315.8270930444698,
+          "y": 81.71347522504395
+        }
+      ],
+      "id": "wire-1782503717611",
+      "start": {
+        "componentId": "dht11_1782503249251_cz0mibdkp",
+        "pinName": "SDA",
+        "x": 630,
+        "y": 72.45494536602052
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "2",
+        "x": 315.8270930444698,
+        "y": 80.92511653363735
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 723.1133472440767,
+          "y": -108.45190248278438
+        },
+        {
+          "x": 326.9708914369322,
+          "y": -108.45190248278438
+        },
+        {
+          "x": 326.9708914369322,
+          "y": -5.455367172173095
+        },
+        {
+          "x": 268.3270930444698,
+          "y": -5.455367172173095
+        }
+      ],
+      "id": "wire-1782503760828",
+      "start": {
+        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
+        "pinName": "S",
+        "x": 723.1133472440767,
+        "y": -141.1182428739796
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "7",
+        "x": 268.3270930444698,
+        "y": 80.92511653363735
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 205.81059810252134,
+          "y": -263.115889638676
+        }
+      ],
+      "id": "wire-1782505130989",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "SDA",
+        "x": 330.2239153931631,
+        "y": -315.6082040350968
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "13",
+        "x": 204.3270930444698,
+        "y": 80.92511653363735
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 216.88285461451895,
+          "y": -283.41502657733827
+        }
+      ],
+      "id": "wire-1782505135189",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "SCL",
+        "x": 330.2239153931631,
+        "y": -306.1082040350968
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "12",
+        "x": 213.8270930444698,
+        "y": 80.92511653363735
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 190.79533205462346,
+          "y": 345.1484516343011
+        },
+        {
+          "x": -0.46705816420141893,
+          "y": 295.5619060220132
+        }
+      ],
+      "id": "wire-1782505279575",
+      "start": {
+        "componentId": "arduino-uno",
+        "pinName": "3.3V",
+        "x": 229.3270930444698,
+        "y": 263.4251165336374
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "BP63",
+        "x": -40.405130259083975,
+        "y": -75.09507521499154
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 226.60235937671683,
+          "y": 263.4251165336374
+        },
+        {
+          "x": 226.60235937671683,
+          "y": 319.9924013519476
+        },
+        {
+          "x": 60.98067031512844,
+          "y": 319.9924013519476
+        },
+        {
+          "x": 60.98067031512844,
+          "y": 284.69597581423204
+        },
+        {
+          "x": 40.34583692384857,
+          "y": 284.69597581423204
+        },
+        {
+          "x": 40.34583692384857,
+          "y": 53.368633059357734
+        },
+        {
+          "x": 130.594869740916,
+          "y": 53.368633059357734
+        }
+      ],
+      "id": "wire-1782505349310",
+      "start": {
+        "componentId": "arduino-uno",
+        "pinName": "5V",
+        "x": 239.3270930444698,
+        "y": 263.4251165336374
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TP63",
+        "x": 130.594869740916,
+        "y": -75.09507521499154
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 579.0235928225229,
+          "y": 83.2348392835786
+        },
+        {
+          "x": 552.4155181863989,
+          "y": -92.16124454230027
+        }
+      ],
+      "id": "wire-1782505373777",
+      "start": {
+        "componentId": "dht11_1782503249251_cz0mibdkp",
+        "pinName": "VCC",
+        "x": 605,
+        "y": 72.45494536602052
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TP61",
+        "x": 130.594869740916,
+        "y": -94.29507521499147
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1782505401711",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "VCC",
+        "x": 330.2239153931631,
+        "y": -325.1082040350968
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TP37",
+        "x": 130.594869740916,
+        "y": -324.6950752149915
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1782505413878",
+      "start": {
+        "componentId": "arduino-uno",
+        "pinName": "GND.1",
+        "x": 194.8270930444698,
+        "y": 80.92511653363735
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TN62",
+        "x": 117.59486974091602,
+        "y": -84.69507521499145
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1782505417845",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "GND",
+        "x": 330.2239153931631,
+        "y": -334.6082040350968
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TN36",
+        "x": 117.59486974091601,
+        "y": -334.29507521499147
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 804.3776943325531,
+          "y": -139.94717450105364
+        },
+        {
+          "x": 877.6856550647316,
+          "y": -180.13079742091443
+        },
+        {
+          "x": 827.1846154492308,
+          "y": -239.86320986935615
+        },
+        {
+          "x": 660.4768825249434,
+          "y": -217.59931068402787
+        },
+        {
+          "x": 640.9280929963626,
+          "y": -179.0447535582155
+        }
+      ],
+      "id": "wire-1782505445179",
+      "start": {
+        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
+        "pinName": "-",
+        "x": 748.1133472440767,
+        "y": -141.1182428739796
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TN52",
+        "x": 117.59486974091602,
+        "y": -180.69507521499156
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 626.693761579148,
+          "y": -141.27174741351425
+        }
+      ],
+      "id": "wire-1782505485796",
+      "start": {
+        "componentId": "dht11_1782503249251_cz0mibdkp",
+        "pinName": "GND",
+        "x": 655,
+        "y": 72.45494536602052
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TN56",
+        "x": 117.59486974091602,
+        "y": -142.29507521499147
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 390.59498264425685,
+          "y": -2.562625869637692
+        },
+        {
+          "x": -8.52613689760374,
+          "y": -10.164932908530274
+        }
+      ],
+      "id": "wire-1782505322926",
+      "start": {
+        "componentId": "lm35dz_1782503286869_cc68ez4m3",
+        "pinName": "+VS",
+        "x": 415.75062973473774,
+        "y": 16.510632987696397
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "BP61",
+        "x": -40.405130259083975,
+        "y": -94.29507521499147
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 594.7089827242852,
+          "y": -14.905653904957695
+        },
+        {
+          "x": 559.5781600476325,
+          "y": -119.24944066098573
+        }
+      ],
+      "id": "wire-1782505478513",
+      "start": {
+        "componentId": "lm35dz_1782503286869_cc68ez4m3",
+        "pinName": "GND",
+        "x": 437.75062973473774,
+        "y": 16.510632987696397
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TN59",
+        "x": 117.59486974091602,
+        "y": -113.49507521499152
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 370.42903794459966,
+          "y": 310.4227749944375
+        }
+      ],
+      "id": "wire-1782505723934",
+      "start": {
+        "componentId": "lm35dz_1782503286869_cc68ez4m3",
+        "pinName": "OUT",
+        "x": 426.75062973473774,
+        "y": 16.510632987696397
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "A0",
+        "x": 287.3270930444698,
+        "y": 263.4251165336374
+      },
+      "color": "#22c55e"
+    }
+  ],
+  "activeBoardId": "arduino-uno"
+}
