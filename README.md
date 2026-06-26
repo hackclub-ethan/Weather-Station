@@ -1,12 +1,9 @@
-# Weather Station
-
-
+## What It Does
 
 Weather Station that tracks weather, humidity and percciptation
 
 
 > Built in [Breadboard](https://breadboard.hackclub.com), a Hack Club program. This project took ~1 hours of work.
-
 
 
 ## How To Use It
