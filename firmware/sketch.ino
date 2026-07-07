@@ -23,32 +23,32 @@ void setup() {
 
 void loop() {
     // Temp Sensor
-    tempSenVal = analogRead(A0);
-    voltage = (tempSenVal * 5000) / 1024;
-    celcius = voltage/10;
+    float tempSenVal = analogRead(A0);
+    float voltage = (tempSenVal * 5000) / 1024;
+    float celcius = voltage/10;
 
 
     // Humitity Sesnor
     float humitity = dht11.readHumidity();
 
     // Get water level number
-    levelSen = analogRead(A3);
-    level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting 
+    float levelSen = analogRead(A3);
+    float level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting 
 
     // Set values on LCD
     lcd.clear();
 
     lcd.print("Temp: ");
-    lcd.print(celcius)
-    lcd.print("C    ")
+    lcd.print(celcius);
+    lcd.print("C    ");
 
-    lcd.print("Humitity:")
-    lcd.print(humitity)
+    lcd.print("Humitity:");
+    lcd.print(humitity);
 
-    lcd.setCursor(0, 1)
+    lcd.setCursor(0, 1);
 
-    lcd.print("Water level: ")
-    lcd.print(level)
+    lcd.print("Water level: ");
+    lcd.print(level);
     
 
     delay(60000); // One minute
