@@ -15,3 +15,9 @@ Added an LCD and moved power to a breadboard. Still waiting on docs for water le
 ## Jun 26, 2026, 9:41 PM
 
 Programmed the hardware. Probly wont work since never coded in C++ or an ardunio before. Still waiting on water level sesnor docs so didnt program that. Once that is done, I can submit the design.
+
+---
+
+## Jun 26, 2026, 10:38 PM
+
+Wired and programmed the water level sensor
