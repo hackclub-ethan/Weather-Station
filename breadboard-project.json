@@ -10,14 +10,14 @@
       "y": 71.92511653363735,
       "activeFileGroupId": "group-arduino-uno",
       "languageMode": "arduino",
-      "serialBaudRate": 0
+      "serialBaudRate": 9615
     }
   ],
   "fileGroups": {
     "group-arduino-uno": [
       {
         "name": "sketch.ino",
-        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(A3, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    tempSenVal = analogRead(A0);\n    voltage = (tempSenVal * 5000) / 1024;\n    celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n    levelSen = analogRead(A3);\n    level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting \n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"Temp: \");\n    lcd.print(celcius)\n    lcd.print(\"C    \")\n\n    lcd.print(\"Humitity:\")\n    lcd.print(humitity)\n\n    lcd.setCursor(0, 1)\n\n    lcd.print(\"Water level: \")\n    lcd.print(level)\n    \n\n    delay(60000); // One minute\n}"
+        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(A3, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    float tempSenVal = analogRead(A0);\n    float voltage = (tempSenVal * 5000) / 1024;\n    float celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n    float levelSen = analogRead(A3);\n    float level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting \n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"Temp: \");\n    lcd.print(celcius);\n    lcd.print(\"C    \");\n\n    lcd.print(\"Humitity:\");\n    lcd.print(humitity);\n\n    lcd.setCursor(0, 1);\n\n    lcd.print(\"Water level: \");\n    lcd.print(level);\n    \n\n    delay(60000); // One minute\n}"
       }
     ]
   },
@@ -42,19 +42,6 @@
       }
     },
     {
-      "id": "lcd1602_i2c_1782505094722_4dlu2whr9",
-      "metadataId": "lcd1602-i2c",
-      "x": 320.2239153931631,
-      "y": -372.6082040350968,
-      "properties": {
-        "i2cAddress": "0x27",
-        "pins": "i2c",
-        "background": "blue",
-        "color": "black",
-        "backlight": true
-      }
-    },
-    {
       "id": "breadboard_full_1782505241075_v7o2pm33u",
       "metadataId": "breadboard-full",
       "x": -315.405130259084,
@@ -71,6 +58,19 @@
       "properties": {
         "temperature": 25,
         "rotation": 0
+      }
+    },
+    {
+      "id": "lcd1602_i2c_1782505094722_4dlu2whr9",
+      "metadataId": "lcd1602-i2c",
+      "x": 332.5830731101528,
+      "y": -392.2863285818564,
+      "properties": {
+        "i2cAddress": "0x27",
+        "pins": "i2c",
+        "background": "blue",
+        "color": "black",
+        "backlight": true
       }
     }
   ],
@@ -121,50 +121,6 @@
         "componentId": "arduino-uno",
         "pinName": "2",
         "x": 315.8270930444698,
-        "y": 80.92511653363735
-      },
-      "color": "#22c55e"
-    },
-    {
-      "waypoints": [
-        {
-          "x": 205.81059810252134,
-          "y": -263.115889638676
-        }
-      ],
-      "id": "wire-1782505130989",
-      "start": {
-        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
-        "pinName": "SDA",
-        "x": 330.2239153931631,
-        "y": -315.6082040350968
-      },
-      "end": {
-        "componentId": "arduino-uno",
-        "pinName": "13",
-        "x": 204.3270930444698,
-        "y": 80.92511653363735
-      },
-      "color": "#22c55e"
-    },
-    {
-      "waypoints": [
-        {
-          "x": 216.88285461451895,
-          "y": -283.41502657733827
-        }
-      ],
-      "id": "wire-1782505135189",
-      "start": {
-        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
-        "pinName": "SCL",
-        "x": 330.2239153931631,
-        "y": -306.1082040350968
-      },
-      "end": {
-        "componentId": "arduino-uno",
-        "pinName": "12",
-        "x": 213.8270930444698,
         "y": 80.92511653363735
       },
       "color": "#22c55e"
@@ -269,23 +225,6 @@
     },
     {
       "waypoints": [],
-      "id": "wire-1782505401711",
-      "start": {
-        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
-        "pinName": "VCC",
-        "x": 330.2239153931631,
-        "y": -325.1082040350968
-      },
-      "end": {
-        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
-        "pinName": "TP37",
-        "x": 130.594869740916,
-        "y": -324.6950752149915
-      },
-      "color": "#cc0000"
-    },
-    {
-      "waypoints": [],
       "id": "wire-1782505413878",
       "start": {
         "componentId": "arduino-uno",
@@ -298,23 +237,6 @@
         "pinName": "TN62",
         "x": 117.59486974091602,
         "y": -84.69507521499145
-      },
-      "color": "#000000"
-    },
-    {
-      "waypoints": [],
-      "id": "wire-1782505417845",
-      "start": {
-        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
-        "pinName": "GND",
-        "x": 330.2239153931631,
-        "y": -334.6082040350968
-      },
-      "end": {
-        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
-        "pinName": "TN36",
-        "x": 117.59486974091601,
-        "y": -334.29507521499147
       },
       "color": "#000000"
     },
@@ -453,19 +375,6 @@
       "color": "#22c55e"
     },
     {
-      "id": "wire-1782513336120",
-      "start": {
-        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
-        "pinName": "S",
-        "x": 723.1179453493688,
-        "y": -141.1142167165867
-      },
-      "end": {
-        "componentId": "arduino-uno",
-        "pinName": "A3",
-        "x": 315.8270930444698,
-        "y": 263.4251165336374
-      },
       "waypoints": [
         {
           "x": 722.529932939377,
@@ -488,9 +397,23 @@
           "y": 346.8862081592938
         }
       ],
+      "id": "wire-1782513336120",
+      "start": {
+        "componentId": "water_level_sensor_1782503332053_rljc90l5k",
+        "pinName": "S",
+        "x": 723.1133472440767,
+        "y": -141.1182428739796
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "A3",
+        "x": 315.8270930444698,
+        "y": 263.4251165336374
+      },
       "color": "#22c55e"
     },
     {
+      "waypoints": [],
       "id": "wire-1782513371204",
       "start": {
         "componentId": "water_level_sensor_1782503332053_rljc90l5k",
@@ -504,9 +427,86 @@
         "x": 130.594869740916,
         "y": -142.29507521499147
       },
-      "waypoints": [],
       "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1782505401711",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "VCC",
+        "x": 356.5830731101528,
+        "y": -383.2863285818564
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TP37",
+        "x": 130.594869740916,
+        "y": -324.6950752149915
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1782505417845",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "GND",
+        "x": 349.5830731101528,
+        "y": -383.2863285818564
+      },
+      "end": {
+        "componentId": "breadboard_full_1782505241075_v7o2pm33u",
+        "pinName": "TN36",
+        "x": 117.59486974091601,
+        "y": -334.29507521499147
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 375.77467365122567,
+          "y": 327.60837636603253
+        },
+        {
+          "x": 367.36421553464163,
+          "y": -243.8624135436697
+        }
+      ],
+      "id": "wire-1783426096891",
+      "start": {
+        "componentId": "arduino-uno",
+        "pinName": "A4",
+        "x": 325.3270930444698,
+        "y": 263.4251165336374
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "SDA",
+        "x": 363.5830731101528,
+        "y": -383.2863285818564
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1783426104025",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "SCL",
+        "x": 370.5830731101528,
+        "y": -383.2863285818564
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "A5",
+        "x": 334.8270930444698,
+        "y": 263.4251165336374
+      },
+      "color": "#22c55e"
     }
   ],
-  "activeBoardId": "arduino-uno"
+  "activeBoardId": "arduino-uno",
+  "ignoreStock": false
 }
