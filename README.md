@@ -32,6 +32,7 @@ The editor snapshot is in `breadboard-project.json`.
 | --- | --- |
 | breadboard-full | 1 |
 | dht11 | 1 |
+| lcd1602 | 1 |
 | lcd1602-i2c | 1 |
 | lm35dz | 1 |
 | water-level-sensor | 1 |
