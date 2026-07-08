@@ -17,7 +17,7 @@
     "group-arduino-uno": [
       {
         "name": "sketch.ino",
-        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(A3, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    float tempSenVal = analogRead(A0);\n    float voltage = (tempSenVal * 5000) / 1024;\n    float celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n    float levelSen = analogRead(A3);\n    float level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting \n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"Temp: \");\n    lcd.print(celcius);\n    lcd.print(\"C    \");\n\n    lcd.print(\"Humitity:\");\n    lcd.print(humitity);\n\n    lcd.setCursor(0, 1);\n\n    lcd.print(\"Water level: \");\n    lcd.print(level);\n    \n\n    delay(60000); // One minute\n}"
+        "content": "#include \"DHT.h\"\n#include <DIYables_LCD_I2C.h>\n\n#define DHT11_PIN 2\n\nDHT dht11(DHT11_PIN, DHT11);\nDIYables_LCD_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n    pinMode(2, INPUT);\n    pinMode(A3, INPUT);\n    pinMode(12, INPUT);\n    pinMode(13, INPUT);\n    pinMode(A0, INPUT);\n\n    Serial.begin(9600);\n\n    dht11.begin();\n\n    lcd.init();\n    lcd.backlight();\n}\n\nvoid loop() {\n    // Temp Sensor\n    float tempSenVal = analogRead(A0);\n    float voltage = (tempSenVal * 5000) / 1024;\n    float celcius = voltage/10;\n\n\n    // Humitity Sesnor\n    float humitity = dht11.readHumidity();\n\n    // Get water level number\n    float levelSen = analogRead(A3);\n    float level = 10; // Need to calculate. Once I have the kit I can do testing/adjusting \n\n    // Set values on LCD\n    lcd.clear();\n\n    lcd.print(\"T: \");\n    lcd.print(celcius);\n    lcd.print(\"C \");\n\n    lcd.print(\"H: \");\n    lcd.print(humitity);\n\n    lcd.setCursor(0, 1);\n\n    lcd.print(\"Water: \");\n    lcd.print(level);\n    \n\n    delay(60000); // One minute\n}"
       }
     ]
   },
@@ -63,14 +63,65 @@
     {
       "id": "lcd1602_i2c_1782505094722_4dlu2whr9",
       "metadataId": "lcd1602-i2c",
-      "x": 332.5830731101528,
-      "y": -392.2863285818564,
+      "x": 379.35217233958934,
+      "y": -527.6053343626338,
       "properties": {
         "i2cAddress": "0x27",
         "pins": "i2c",
         "background": "blue",
         "color": "black",
         "backlight": true
+      }
+    },
+    {
+      "id": "lcd1602_1783542305832_g1kok5mxw",
+      "metadataId": "lcd1602",
+      "x": 406.99867061054624,
+      "y": -738.975786495611,
+      "properties": {
+        "color": "white",
+        "background": "blue",
+        "characters": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0,
+          "21": 0,
+          "22": 0,
+          "23": 0,
+          "24": 0,
+          "25": 0,
+          "26": 0,
+          "27": 0,
+          "28": 0,
+          "29": 0,
+          "30": 0,
+          "31": 0
+        },
+        "cursor": false,
+        "blink": false,
+        "cursorX": 0,
+        "cursorY": 0,
+        "backlight": true,
+        "pins": "full",
+        "screenOnly": false
       }
     }
   ],
@@ -435,8 +486,8 @@
       "start": {
         "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
         "pinName": "VCC",
-        "x": 356.5830731101528,
-        "y": -383.2863285818564
+        "x": 403.35217233958934,
+        "y": -518.6053343626338
       },
       "end": {
         "componentId": "breadboard_full_1782505241075_v7o2pm33u",
@@ -452,8 +503,8 @@
       "start": {
         "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
         "pinName": "GND",
-        "x": 349.5830731101528,
-        "y": -383.2863285818564
+        "x": 396.35217233958934,
+        "y": -518.6053343626338
       },
       "end": {
         "componentId": "breadboard_full_1782505241075_v7o2pm33u",
@@ -467,11 +518,31 @@
       "waypoints": [
         {
           "x": 375.77467365122567,
+          "y": 263.4251165336374
+        },
+        {
+          "x": 375.77467365122567,
+          "y": 327.60837636603253
+        },
+        {
+          "x": 367.36421553464163,
           "y": 327.60837636603253
         },
         {
           "x": 367.36421553464163,
           "y": -243.8624135436697
+        },
+        {
+          "x": 362.65340815703405,
+          "y": -243.8624135436697
+        },
+        {
+          "x": 362.65340815703405,
+          "y": -543.8295879855722
+        },
+        {
+          "x": 410.35217233958934,
+          "y": -543.8295879855722
         }
       ],
       "id": "wire-1783426096891",
@@ -484,8 +555,8 @@
       "end": {
         "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
         "pinName": "SDA",
-        "x": 363.5830731101528,
-        "y": -383.2863285818564
+        "x": 410.35217233958934,
+        "y": -518.6053343626338
       },
       "color": "#22c55e"
     },
@@ -495,8 +566,8 @@
       "start": {
         "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
         "pinName": "SCL",
-        "x": 370.5830731101528,
-        "y": -383.2863285818564
+        "x": 417.35217233958934,
+        "y": -518.6053343626338
       },
       "end": {
         "componentId": "arduino-uno",
@@ -504,6 +575,446 @@
         "x": 334.8270930444698,
         "y": 263.4251165336374
       },
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542328233",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "K",
+        "x": 588.9986706105462,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "K",
+        "x": 505.4521723395893,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 581.4236460006881,
+          "y": -570.405786495611
+        },
+        {
+          "x": 581.4236460006881,
+          "y": -447.4053343626339
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542376917",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "A",
+        "x": 579.4986706105462,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "A",
+        "x": 497.9521723395893,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 571.5750570896407,
+          "y": -435.64301279610476
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542386284",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D7",
+        "x": 490.4521723395893,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D7",
+        "x": 569.4986706105462,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 502.34527033257234,
+          "y": -425.215095125584
+        },
+        {
+          "x": 560.5678106596465,
+          "y": -426.66341702426746
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542397017",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D6",
+        "x": 559.9986706105462,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D6",
+        "x": 482.9521723395893,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 551.5882148878093,
+          "y": -570.405786495611
+        },
+        {
+          "x": 551.5882148878093,
+          "y": -419.8295879855722
+        },
+        {
+          "x": 482.7521723395894,
+          "y": -419.8295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542408301",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D5",
+        "x": 550.4986706105462,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D5",
+        "x": 475.4521723395893,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 540.2913040780784,
+          "y": -570.405786495611
+        },
+        {
+          "x": 540.2913040780784,
+          "y": -414.2295879855722
+        },
+        {
+          "x": 475.2521723395894,
+          "y": -414.2295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542431451",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D4",
+        "x": 467.9521723395893,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D4",
+        "x": 540.9986706105462,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 471.994741625848,
+          "y": -404.2295879855722
+        },
+        {
+          "x": 527.794741625848,
+          "y": -466.0295879855722
+        },
+        {
+          "x": 531.194741625848,
+          "y": -543.8295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542457185",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D3",
+        "x": 531.4986706105462,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D3",
+        "x": 460.4521723395893,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 522.594741625848,
+          "y": -507.6295879855722
+        },
+        {
+          "x": 462.794741625848,
+          "y": -507.0295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542464652",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D2",
+        "x": 452.9521723395893,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D2",
+        "x": 521.9986706105462,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 453.794741625848,
+          "y": -448.4053343626339
+        },
+        {
+          "x": 453.794741625848,
+          "y": -530.4295879855722
+        },
+        {
+          "x": 511.99867061054624,
+          "y": -530.4295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542477969",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D1",
+        "x": 445.45217233958937,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D1",
+        "x": 512.4986706105462,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 445.794741625848,
+          "y": -448.4053343626339
+        },
+        {
+          "x": 445.794741625848,
+          "y": -536.6295879855722
+        },
+        {
+          "x": 502.49867061054624,
+          "y": -536.6295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542552354",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "D0",
+        "x": 437.95217233958937,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "D0",
+        "x": 502.49867061054624,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 439.194741625848,
+          "y": -448.4053343626339
+        },
+        {
+          "x": 439.194741625848,
+          "y": -543.2295879855722
+        },
+        {
+          "x": 505.794741625848,
+          "y": -543.2295879855722
+        },
+        {
+          "x": 505.794741625848,
+          "y": -555.8295879855722
+        },
+        {
+          "x": 502.49867061054624,
+          "y": -555.8295879855722
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542581554",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "E",
+        "x": 430.45217233958937,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "E",
+        "x": 492.99867061054624,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 433.103373440104,
+          "y": -549.2526061569214
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542588421",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "RW",
+        "x": 483.49867061054624,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "RW",
+        "x": 422.95217233958937,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 482.89253159688906,
+          "y": -556.0266412802935
+        },
+        {
+          "x": 424.97453129205746,
+          "y": -550.9461149377644
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542594188",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "RS",
+        "x": 415.45217233958937,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "RS",
+        "x": 473.49867061054624,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 415.75062973473774,
+          "y": -448.6053343626338
+        },
+        {
+          "x": 415.75062973473774,
+          "y": -561.1071676228225
+        },
+        {
+          "x": 473.49867061054624,
+          "y": -561.1071676228225
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542617972",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "V0",
+        "x": 407.95217233958937,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "V0",
+        "x": 464.49867061054624,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 408.71684699596443,
+          "y": -568.8973080147005
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542651689",
+      "start": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "VDD",
+        "x": 454.49867061054624,
+        "y": -602.005786495611
+      },
+      "end": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "VDD",
+        "x": 400.45217233958937,
+        "y": -448.6053343626338
+      },
+      "waypoints": [
+        {
+          "x": 453.08677705405177,
+          "y": -575.332641381904
+        },
+        {
+          "x": 396.184882017726,
+          "y": -573.9778343572295
+        }
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1783542659906",
+      "start": {
+        "componentId": "lcd1602_i2c_1782505094722_4dlu2whr9",
+        "pinName": "VSS",
+        "x": 392.95217233958937,
+        "y": -448.6053343626338
+      },
+      "end": {
+        "componentId": "lcd1602_1783542305832_g1kok5mxw",
+        "pinName": "VSS",
+        "x": 444.99867061054624,
+        "y": -602.005786495611
+      },
+      "waypoints": [
+        {
+          "x": 395.8461802615574,
+          "y": -581.7679747491075
+        },
+        {
+          "x": 445.6353384183424,
+          "y": -588.8807116286482
+        }
+      ],
       "color": "#22c55e"
     }
   ],
