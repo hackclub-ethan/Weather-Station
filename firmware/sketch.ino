@@ -38,16 +38,16 @@ void loop() {
     // Set values on LCD
     lcd.clear();
 
-    lcd.print("Temp: ");
+    lcd.print("T: ");
     lcd.print(celcius);
-    lcd.print("C    ");
+    lcd.print("C ");
 
-    lcd.print("Humitity:");
+    lcd.print("H: ");
     lcd.print(humitity);
 
     lcd.setCursor(0, 1);
 
-    lcd.print("Water level: ");
+    lcd.print("Water: ");
     lcd.print(level);
     
 
