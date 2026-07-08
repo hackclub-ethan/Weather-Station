@@ -1,6 +1,6 @@
 # Weather Station
 
-
+## What It Does
 
 ![Weather Station](https://breadboard.hackclub.com/api/uploads/project-screenshots/uuwM8Bc1NRNEdX17ggzu6xlh7RfpU9QY/20/4ef9f490-3896-4a54-8b55-5825951a09cb.png)
 
@@ -9,7 +9,9 @@ Weather Station that tracks weather, humidity and percciptation
 
 > Built in [Breadboard](https://breadboard.hackclub.com), a Hack Club program. This project took ~2 hours of work.
 
+## How it works
 
+Uses 3 diffrent sensors to read the values then dispalyed them on an LCD
 
 ## How To Use It
 
@@ -21,7 +23,7 @@ Wire everything together then plug in the Arduino. Once I build and debug the co
 - **Try it:** [https://breadboard.hackclub.com/share/20](https://breadboard.hackclub.com/share/20)
 
 
-## Schematic
+## Schematic and Wiring
 
 The editor snapshot is in `breadboard-project.json`.
 
