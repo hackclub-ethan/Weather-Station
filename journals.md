@@ -21,3 +21,9 @@ Programmed the hardware. Probly wont work since never coded in C++ or an ardunio
 ## Jun 26, 2026, 10:38 PM
 
 Wired and programmed the water level sensor
+
+---
+
+## Jul 8, 2026, 8:36 PM
+
+Added LCD/connected it to the I2C module. Tested in sim, debugged and now it works.
